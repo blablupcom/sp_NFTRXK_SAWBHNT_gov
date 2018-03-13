@@ -103,7 +103,7 @@ for block in blocks:
     link_page = block.find('a')['href']
     html_page = urllib2.urlopen(link_page)
     soup_page = BeautifulSoup(html_page, 'lxml')
-    doc_links = soup_page.find('div', 'content page-default').find_all('a')
+    doc_links = soup_page.find('div', attrs={'class', re.compile('content page-default')}).find_all('a')
     for doc in doc_links:
         if '.csv' in doc['href']:
             url = doc['href']
@@ -111,8 +111,6 @@ for block in blocks:
             csvYr = '20' + doc.text.split()[-1][-2:]
             csvMth = convert_mth_strings(csvMth.upper())
             data.append([csvYr, csvMth, url])
-
-
 
 
 #### STORE DATA 1.0
