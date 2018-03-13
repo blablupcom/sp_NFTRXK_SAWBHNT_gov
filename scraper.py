@@ -103,8 +103,8 @@ for block in blocks:
     link_page = block.find('a')['href']
     html_page = urllib2.urlopen(link_page)
     soup_page = BeautifulSoup(html_page, 'lxml')
-    print soup_page
-    doc_links = soup_page.find('div', attrs={'class', re.compile('content page-default')}).find_all('a')
+   # print soup_page
+    doc_links = soup_page.find_all('a')
     for doc in doc_links:
         if '.csv' in doc['href']:
             url = doc['href']
